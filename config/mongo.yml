@@ -1,0 +1,17 @@
+defaults: &defaults
+  uri: <%= ENV['MONGOLAB_URI'] %>
+  options:
+    w: 1
+    pool_size: 1
+    slave_ok: false
+    ssl: false
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+  w: 0
+
+production:
+  <<: *defaults

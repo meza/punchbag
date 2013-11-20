@@ -1,0 +1,16 @@
+language: ruby
+rvm:
+  - 1.9.3
+  - 2.0.0
+script:
+  - RAILS_ENV=test bundle exec rake db:migrate --trace
+  - bundle exec rake db:test:prepare
+deploy:
+  provider: heroku
+  strategy: anvil
+  app: punchbag
+  on: 
+    branch: master
+    rvm: 2.0.0
+  api_key:
+    secure: jzTKuhW3qetMc91C3V6fRMZX9qwvg+uAHZUrEQR4qXelXr4gnZTZCvIfDTJaJ2lkyK3Po5p/HhmDYnGghe96JB8b2sK9/JnpB2DCayIgjw9o7jKcrVTi1nv3HaNYdzKYjLGE/OE7helR9IKQVmknD9njy5OoNxN/3003dbC05fo=
