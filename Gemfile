@@ -7,7 +7,11 @@ gem 'bson_ext'
 gem 'mongo'
 gem 'mongo_mapper', :git => "git://github.com/mongomapper/mongomapper.git", :tag => "v0.13.0.beta2"
 
+
 gem 'rails', '4.0.1'
+gem 'jquery-rails'
+gem 'turbolinks'
+
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
