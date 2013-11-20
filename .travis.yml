@@ -1,15 +1,20 @@
 language: ruby
+env:
+  matrix:
+  - MONGOLAB_URI=
+  global:
+    secure: a201Ciy7Jqy/+tYvlfuNo6eqWqphDirVAq0ozd8Iy7/YCfzdJs0upos9oMKJogjIdXerm4Djmr/nCpEtTdsD5dBrW9CtkfdmDIjIacZ75j6SHIkYzEV9OKtdM7A38UAMkysczzmA/q/T1Jxmdj5OnF7sTm7qek0nTwiz76Imm2w=
 rvm:
-  - 1.9.3
-  - 2.0.0
+- 1.9.3
+- 2.0.0
 script:
-  - RAILS_ENV=test bundle exec rake db:migrate --trace
-  - bundle exec rake db:test:prepare
+- RAILS_ENV=test bundle exec rake db:migrate --trace
+- bundle exec rake db:test:prepare
 deploy:
   provider: heroku
   strategy: anvil
   app: punchbag
-  on: 
+  on:
     branch: master
     rvm: 2.0.0
   api_key:
