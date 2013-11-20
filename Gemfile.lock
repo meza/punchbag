@@ -10,6 +10,7 @@ GIT
       plucky (~> 0.6.5)
 
 GEM
+  remote: http://rubygems.org/
   remote: http://gemcutter.org/
   specs:
     actionmailer (4.0.1)
