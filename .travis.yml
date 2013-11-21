@@ -12,7 +12,7 @@ script:
 - bundle exec rake db:test:prepare
 deploy:
   provider: heroku
-  strategy: anvil
+  strategy: git
   app: punchbag
   on:
     branch: master
