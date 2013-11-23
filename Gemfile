@@ -13,13 +13,16 @@ gem 'jquery-rails'
 gem 'turbolinks'
 
 
-# Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0'
-
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
 gem 'dpl'
+
+group :assets do
+  gem 'sass-rails'
+  gem 'coffee-rails'
+  gem 'uglifier'
+end
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
