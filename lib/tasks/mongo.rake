@@ -5,3 +5,9 @@ namespace :db do
     end
   end
 end
+
+namespace :asset do
+ task :precompile do
+   # Stub out for MongoDB
+ end
+end
