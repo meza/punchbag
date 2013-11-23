@@ -2,12 +2,13 @@ class UsersController < ApplicationController
 
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :signed_in_user, only: [:index, :show, :edit, :update]
-  before_action :correct_user,   only: [:edit, :update]
+  before_action :correct_user, only: [:edit, :update]
 
   # GET /users
   # GET /users.json
   def index
     @users = User.all
+    @currentuser = current_user
   end
 
   # GET /users/1
@@ -56,6 +57,30 @@ class UsersController < ApplicationController
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def follow
+    usertofollow = User.find(params[:id])
+    currentuser = current_user
+
+    unless currentuser == usertofollow
+      currentuser.follow(usertofollow)
+      redirect_to users_path, :flash => {:info => sprintf("You are now following %s", usertofollow.username)} and return
+    end
+    redirect_to users_path, :flash => {:error => sprintf("You can't follow yourself!")} and return
+
+  end
+
+  def unfollow
+    usertounfollow = User.find(params[:id])
+    currentuser = current_user
+
+    unless currentuser == usertounfollow
+      currentuser.unfollow(usertounfollow)
+      redirect_to users_path, :flash => {:info => sprintf("You now stopped following %s", usertounfollow.username)} and return
+    end
+    redirect_to users_path, :flash => {:error => sprintf("You can't unfollow yourself because you can't even follow yourself!")} and return
+
   end
 
   # DELETE /users/1
