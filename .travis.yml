@@ -1,7 +1,5 @@
 language: ruby
 env:
-  matrix:
-  - MONGOLAB_URI=
   global:
     secure: a201Ciy7Jqy/+tYvlfuNo6eqWqphDirVAq0ozd8Iy7/YCfzdJs0upos9oMKJogjIdXerm4Djmr/nCpEtTdsD5dBrW9CtkfdmDIjIacZ75j6SHIkYzEV9OKtdM7A38UAMkysczzmA/q/T1Jxmdj5OnF7sTm7qek0nTwiz76Imm2w=
 rvm:
