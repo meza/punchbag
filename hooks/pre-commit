@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# source rvm and .rvmrc if present
+[ -s "$HOME/.rvm/scripts/rvm" ] && . "$HOME/.rvm/scripts/rvm"
+[ -s "$PWD/.rvmrc" ] && . "$PWD/.rvmrc"
+ 
+# precompile assets if any have been updated
+if git diff-index --name-only HEAD | egrep '^app/assets' >/dev/null ; then
+  echo 'Precompiling assets...'
+  rake assets:precompile:all RAILS_ENV=production RAILS_GROUPS=assets
+  git add public/assets/*
+fi
