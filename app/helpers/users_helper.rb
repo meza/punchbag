@@ -18,4 +18,11 @@ module UsersHelper
     @user = User.find(params[:id])
     redirect_to(root_url) unless current_user?(@user)
   end
+
+  def follower_from_id(id)
+    user = User.find(id)
+
+    return Follower.new(:username=>user.username, :email=>user.email, :original_id=>user.id)
+
+  end
 end

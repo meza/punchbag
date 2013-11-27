@@ -5,8 +5,9 @@ class Message
   validates :to, presence: true
   validates :message, presence: true
 
-  key :from, User
-  key :to, User
+  key :from, Follower
+  key :to, Follower
   key :message, String
+  key :read, Boolean, :default => false
 
 end
