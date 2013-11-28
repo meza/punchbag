@@ -14,6 +14,10 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @user = User.where(:username=>params[:username]).first
+    if @user.nil?
+      redirect_to users_path, :flash => {:error => sprintf("No such user!")} and return
+    end
   end
 
   # GET /users/new
@@ -23,7 +27,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @user = User.find(params[:id])
+    @user = User.where(:username=>params[:username]).first
   end
 
   # POST /users
@@ -60,7 +64,7 @@ class UsersController < ApplicationController
   end
 
   def follow
-    usertofollow = User.find(params[:id])
+    usertofollow = User.where(:username=>params[:username]).first
     currentuser = current_user
 
     unless currentuser == usertofollow
@@ -72,7 +76,7 @@ class UsersController < ApplicationController
   end
 
   def unfollow
-    usertounfollow = User.find(params[:id])
+    usertounfollow = User.where(:username=>params[:username]).first
     currentuser = current_user
 
     unless currentuser == usertounfollow
@@ -86,6 +90,7 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
+    @user = User.where(:username=>params[:username]).first
     @user.destroy
     respond_to do |format|
       format.html { redirect_to users_url }

@@ -15,7 +15,7 @@ module UsersHelper
   end
 
   def correct_user
-    @user = User.find(params[:id])
+    @user = User.where(:username=>params[:username]).first
     redirect_to(root_url) unless current_user?(@user)
   end
 
@@ -25,4 +25,23 @@ module UsersHelper
     return Follower.new(:username=>user.username, :email=>user.email, :original_id=>user.id)
 
   end
+
+  def user_path(user, options={})
+    user_url(user, options.merge(:only_path => true))
+  end
+
+  def edit_user_path(user, options={})
+    edit_user_url(user, options.merge(:only_path => true))
+  end
+
+  def user_url(user, options={})
+    url_for(options.merge(:controller => 'users', :action => 'show',
+                          :username => user.username))
+  end
+
+  def edit_user_url(user, options={})
+    url_for(options.merge(:controller => 'users', :action => 'edit',
+                          :username => user.username))
+  end
+
 end
