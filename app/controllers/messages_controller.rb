@@ -6,6 +6,8 @@ class MessagesController < ApplicationController
   def compose
     followers = User.find(current_user.id).followers
 
+
+
     peeps = Array.new
 
     followers.each do |f|
@@ -14,6 +16,9 @@ class MessagesController < ApplicationController
 
     @peeps_array = peeps.map { |user| [user.username, user.original_id] }
 
+    if @peeps_array.empty?
+      redirect_to users_path, :flash => {:error => sprintf("You don't have any followers. Sod off and make some friends")} and return
+    end
 
   end
 

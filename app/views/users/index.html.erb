@@ -32,5 +32,8 @@
 
 <br>
 
-<%= link_to 'New User', new_user_path %> |
-<%= link_to 'Compose', message_compose_path_path %>
+<%= link_to 'New User', new_user_path %>
+<% unless @currentuser.followers.empty? %>
+	|
+	<%= link_to 'Compose', message_compose_path_path %>
+<% end %>
