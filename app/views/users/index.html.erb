@@ -1,10 +1,9 @@
 <h1>Listing users</h1>
 
-<table>
+<table id="users">
 	<thead>
 	<tr>
 		<th>Username</th>
-		<th>Email</th>
 		<th></th>
 		<th></th>
 		<th></th>
@@ -13,17 +12,18 @@
 
 	<tbody>
 	<% @users.each do |user| %>
-		<tr>
-			<td><%= user.username %></td>
-			<td><%= user.email %></td>
-			<td><%= link_to 'Show', user %></td>
-			<td><%= link_to 'Edit', edit_user_path(user) %></td>
+		<tr class="user">
+			<td class="username"><%= user.username %></td>
+			<td class="show"><%= link_to 'Show', user %></td>
+
 			<% unless current_user? user %>
-				<% if @currentuser.is_follower_of(user) %>
-					<td><%= link_to 'Unfollow', controller: "users", action: "unfollow", username: user.username %></td>
+				<% if current_user.is_follower_of(user) %>
+					<td class="unfollow"><%= link_to 'Unfollow', controller: "users", action: "unfollow", username: user.username %></td>
 				<% else %>
-					<td><%= link_to 'Follow', controller: "users", action: "follow", username: user.username %></td>
+					<td class="follow"><%= link_to 'Follow', controller: "users", action: "follow", username: user.username %></td>
 				<% end %>
+			<% else %>
+			 <td>&nbsp;</td>
 			<% end %>
 		</tr>
 	<% end %>
@@ -32,8 +32,3 @@
 
 <br>
 
-<%= link_to 'New User', new_user_path %>
-<% unless @currentuser.followers.empty? %>
-	|
-	<%= link_to 'Compose', message_compose_path_path %>
-<% end %>

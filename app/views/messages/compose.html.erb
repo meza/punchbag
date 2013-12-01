@@ -1,4 +1,4 @@
-<%= form_tag(url_for(:controller=>"messages", :action=>"sendit"), :method=>"post") do %>
+<%= form_tag(url_for(:controller=>"messages", :action=>"sendit"), :method=>"post", :id=>"compose") do %>
 	<%= select_tag(:to, options_for_select(@peeps_array)) %><br/>
 	<%= text_area_tag(:message, "", :rows=>15, :cols=>40, :autofocus=>true) %><br/>
 	<%= submit_tag "Send"%> | <%= link_to 'Cancel', users_path %>

@@ -1,7 +1,6 @@
 class MessagesController < ApplicationController
 
-  before_action :signed_in_user, only: [:sendit, :compose]
-  before_action :correct_user, only: [:read]
+  before_action :signed_in_user, only: [:sendit, :compose, :read]
 
   def compose
     followers = User.find(current_user.id).followers
@@ -32,8 +31,7 @@ class MessagesController < ApplicationController
   end
 
   def read
-    @messages = Message.where(:to => current_user).all
-
+    @messages = Message.where('to.username' => current_user.username).all
   end
 
   private

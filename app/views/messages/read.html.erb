@@ -1,6 +1,12 @@
-<h1>Let there be text</h1>
+<h2>messages</h2>
+<ul id="messages">
+	<% @messages.each do |msg| %>
+		<li class="message">
+			<div class="sender"><%= msg.from['username'] %></div>
+			<div class="body"><%= msg.message %></div>
+		</li>
+	<% end %>
+</ul>
 
-
-<% @messages.each do |msg| %>
-	<div><%= msg.message %></div>
-<% end %>
+<br/>
+<%= link_to 'Users', users_path %>

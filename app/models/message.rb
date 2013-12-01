@@ -9,5 +9,5 @@ class Message
   key :to, Follower
   key :message, String
   key :read, Boolean, :default => false
-
+  timestamps!
 end

@@ -1,15 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Punchbag</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
+	<title>Punchbag</title>
+	<%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+	<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+	<%= csrf_meta_tags %>
 </head>
 <body>
 <% flash.each do |name, msg| -%>
 	<%= content_tag :div, msg, class: name %>
 <% end -%>
+<% if signed_in? %>
+	<h1>Hi <%= link_to current_user.username, current_user, :class => "username" %>!</h1>
+	<%= link_to 'Sign out', :sign_out_path %>
+	| <%= link_to 'Read messages', :messages_read_path %>
+	<% unless current_user.followers.empty? %>
+		|
+		<%= link_to 'Compose', message_compose_path_path %>
+	<% end %>
+
+<% end %>
 <%= yield %>
 
 </body>
